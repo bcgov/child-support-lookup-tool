@@ -1,0 +1,100 @@
+<div class="container es_main_scroll_container">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <h1>Child Support Calculator <span class="small">v<%= version %></span></h1>
+        </div>
+    </div>
+	<div class="row">
+	    <div class="col-xs-10 col-xs-offset-1">
+	        <form role="form" class="form-horizontal" id="calc-form" novalidate onsubmit="return false;">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="panel-title">Number of Dependents</h3></div>
+                    <div class="panel-body">
+
+                            <button id="btn-remove-dep" class="es_button btn btn-default btn-block-xs">
+                                Remove&nbsp;<span class="glyphicon glyphicon-minus-sign"></span>
+                            </button>
+
+                            <button id="btn-add-dep" class="es_button btn btn-default btn-block-xs">
+                                Add&nbsp;<span class="glyphicon glyphicon-plus-sign"></span>
+                            </button>
+
+                    </div>
+
+                       <table class="table table-striped">
+                         <thead>
+                            <tr><th>Child</th><th>Name</th><th>Living Arrangement&nbsp;<a tabindex="0" role="button" data-trigger="focus" data-toggle="popover" data-content="A primary residence means the dependent is there more than 59% of the time." data-placement="bottom"><span class="glyphicon glyphicon-question-sign"></span></a></th></tr>
+                         </thead>
+                         <tbody>
+                         <% _.each(dependents, function(item, index) { %>
+                            <tr>
+                           <td><strong>#<%= index+1 %></strong></td>
+                           <td><input type="text" class="form-control input-name" value="<%= item.name %>" data-model-id="<%= item.cid %>" /></td>
+                           <td><select class="form-control select-living-arrangement" data-model-id="<%= item.cid %>">
+                                  <option value="-1" <% if (item.living_arrangement === -1){ print('selected');} %>> -- Choose -- </option>
+                                  <option value="0" <% if (item.living_arrangement === 0){ print('selected');} %>>Lives primarily with me</option>
+                                  <option value="1" <% if (item.living_arrangement === 1){ print('selected');} %>>Lives primarily with other parent</option>
+                                  <option value="2" <% if (item.living_arrangement === 2){ print('selected');} %>>Shared living</option>
+                                </select>
+                           </td>
+                         </tr>
+                        <% }); %>
+
+                         </tbody>
+                       </table>
+                </div>
+
+                <div class="panel panel-default">
+                <div class="panel-body">
+
+                <div class="form-group">
+                    <span class="control-label col-xs-4">Your annual income&nbsp;<a tabindex="0" role="button" data-trigger="focus" data-toggle="popover" data-content="Annual income from all sources (up to a max of $150k)" data-placement="right"><span class="glyphicon glyphicon-question-sign"></span></a></span>
+                    <div class="col-xs-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="number" min="0" placeholder="0" value="<%=parent1income%>" class="form-control" id="input-parent1-income" autocomplete="off" />
+                            <span class="input-group-addon">.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <span class="control-label col-xs-4">Other parent's annual income&nbsp;<a tabindex="0" role="button" data-trigger="focus" data-toggle="popover" data-content="Annual income from all sources (up to a max of $150k)" data-placement="right"><span class="glyphicon glyphicon-question-sign"></span></a></span>
+                    <div class="col-xs-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="number" min="0" placeholder="0" value="<%=parent2income%>" class="form-control" id="input-parent2-income" autocomplete="off" />
+                            <span class="input-group-addon">.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+                </div>
+
+                <div class="panel panel-default">
+                <div class="panel-body">
+                    <button id="btn-calculate" class="es_button btn btn-default btn-lg btn-block-xs">
+                        Calculate&nbsp;&nbsp;<span class="glyphicon glyphicon-calendar"></span>
+                    </button>
+                </div>
+                </div>
+
+	        </form>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-10 col-xs-offset-1">
+	        <div id="panel-results" class="results-panel" style="display:none;">
+	           <div class="panel panel-success">
+	              <div class="panel-heading"><h3 class="panel-title">Results</h3></div>
+	              <div class="panel-body">
+	                <div id="label-final-result"></div>
+	              </div>
+	           </div>
+	        </div>
+	    </div>
+	</div>
+
+</div>
