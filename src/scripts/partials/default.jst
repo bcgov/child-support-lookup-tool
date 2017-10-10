@@ -1,7 +1,7 @@
 <div class="container es_main_scroll_container">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
-            <h1>Child Support Calculator <span class="small">v<%= version %></span></h1>
+            <h1>Child Support Lookup Tool <span class="small">v<%= version %></span></h1>
         </div>
     </div>
 	<div class="row">
@@ -24,7 +24,7 @@
 
                        <table class="table table-striped">
                          <thead>
-                            <tr><th>Child</th><th>Name</th><th>Living Arrangement&nbsp;<a tabindex="0" role="button" data-trigger="focus" data-toggle="popover" data-content="A primary residence means the dependent is there more than 59% of the time." data-placement="bottom"><span class="glyphicon glyphicon-question-sign"></span></a></th></tr>
+                            <tr><th>Child</th><th>Name</th><th>Living Arrangement&nbsp;<a tabindex="0" role="button" data-trigger="focus" data-toggle="popover" data-content="The amount of time the child spends with each parent." data-placement="bottom"><span class="glyphicon glyphicon-question-sign"></span></a></th></tr>
                          </thead>
                          <tbody>
                          <% _.each(dependents, function(item, index) { %>
@@ -33,9 +33,9 @@
                            <td><input type="text" class="form-control input-name" value="<%= item.name %>" data-model-id="<%= item.cid %>" /></td>
                            <td><select class="form-control select-living-arrangement" data-model-id="<%= item.cid %>">
                                   <option value="-1" <% if (item.living_arrangement === -1){ print('selected');} %>> -- Choose -- </option>
-                                  <option value="0" <% if (item.living_arrangement === 0){ print('selected');} %>>Lives primarily with me</option>
-                                  <option value="1" <% if (item.living_arrangement === 1){ print('selected');} %>>Lives primarily with other parent</option>
-                                  <option value="2" <% if (item.living_arrangement === 2){ print('selected');} %>>Shared living</option>
+                                  <option value="0" <% if (item.living_arrangement === 0){ print('selected');} %>>Lives with you 60% or more of the time</option>
+                                  <option value="1" <% if (item.living_arrangement === 1){ print('selected');} %>>Lives with the other parent 60% or more of the time</option>
+                                  <option value="2" <% if (item.living_arrangement === 2){ print('selected');} %>>Lives with each parent at least 40% of the time</option>
                                 </select>
                            </td>
                          </tr>
