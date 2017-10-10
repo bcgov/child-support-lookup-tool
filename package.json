@@ -1,6 +1,6 @@
 {
   "name": "child-support-lookup-tool",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "description": "This project is a web conversion of a spreadsheet which is being used to calculate the matrix of child support payments.",
   "main": "index.js",
   "scripts": {
